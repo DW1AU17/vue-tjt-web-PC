@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router/router'
 import ViewUI from 'view-design'   
 import 'view-design/dist/styles/iview.css'
-import '@/assets/styles/base.css'
+import '@/assets/styles/base.less'
 
 Vue.use(ViewUI)  // 整个引入
 

@@ -6,6 +6,10 @@ const router = new VueRouter({
     routes: [
         {
             path: '/',
+            redirect: '/index'
+        },
+        {
+            path: '/index/:id?',
             component: () => import('@/pages/index')
         }
     ]
