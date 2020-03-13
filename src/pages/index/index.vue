@@ -2,27 +2,13 @@
     <div class="index">
         <!-- 头部 / 上部 -->
         <header class="header container">
-            <Row>
-                <Col span="18" class="logo">
-                    <img src="@/assets/images/logo.png" alt="桐君堂">
-                </Col>
-                <Col span="6" class="h-right">
-                    <div class="login">
-                        <a href="#">微信服务号</a><span>|</span>
-                        <a href="#">登录</a><span>|</span>
-                        <a href="#">注册</a>
-                    </div>
-                    <div class="search">
-                        <Input v-model="searchValue" icon="md-search" placeholder="请输入..." />
-                    </div>
-                </Col>
-            </Row>
+            <c-header :searchValue.sync="searchValue" @keyup.enter.native="search" />
         </header>
         <nav class="first-nav">
             <c-nav :navList="firstNav" />
         </nav>
         <div class="swiper">
-             <Carousel v-model="value2" autoplay loop arrow="never" style="height: 100%;">
+             <Carousel v-model="value2" autoplay loop style="height: 100%;">
                 <CarouselItem v-for="item in swiperList" :key="item.id">
                     <div class="demo-carousel" :style="{backgroundImage: `url(${img})`}"></div>
                 </CarouselItem>
@@ -33,20 +19,48 @@
         </nav>
         <!-- 主体 -->
         <div class="main container">
-            3
+            <c-column>
+                <template #title>分馆介绍</template>
+                <template #content>
+                    <c-depInfo :list="depInfoList" />
+                </template>
+            </c-column>
+             <c-column>
+                <template #title>专家介绍</template>
+                <template #content>
+                    <div class="doc-swiper">   
+                        <swiper :options="swiperOption">
+                            <swiper-slide><img src="../../assets/images/code.jpg"></swiper-slide>
+                            <swiper-slide><img src="../../assets/images/code.jpg"></swiper-slide>
+                            <swiper-slide><img src="../../assets/images/code.jpg"></swiper-slide>
+                            <swiper-slide><img src="../../assets/images/code.jpg"></swiper-slide>
+                            <swiper-slide><img src="../../assets/images/code.jpg"></swiper-slide>
+                            <swiper-slide><img src="../../assets/images/code.jpg"></swiper-slide>
+                        </swiper>
+                            <!--以下看需要添加-->
+                        <div class="swiper-scrollbar"></div> 
+                        <div class="swiper-button-next"></div> 
+                        <div class="swiper-button-prev"></div> 
+                        <div class="swiper-pagination"></div> 
+                    </div>
+                </template>
+            </c-column>
         </div>
         <!-- 底部 -->
-        <footer class="foot">
-            <div class="container">
-                4
-            </div>
-        </footer>
+        <c-footer />
     </div>
 </template>
 
 <script>
-import cNav from '@/components/c-nav'
+import cNav from './components/c-nav'
+import cHeader from './components/c-header'
+import cFooter from './components/c-footer'
+import cColumn from './components/c-column'
+import cDepInfo from './components/c-depInfo'
 import img from '@/assets/images/pic1.jpg'
+
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import 'swiper/dist/css/swiper.css'
 
 let firstNav = [
     { path: '/index/index', name: '首页' },
@@ -71,10 +85,23 @@ let swiperList = [
     {id: 2},
     {id: 3}
 ]
+let depInfoList = [
+    {id: 1, name: '武林馆', path: '/index/11', img: '' },
+    {id: 2, name: '武林馆', path: '/index/11', img: '' },
+    {id: 3, name: '武林馆', path: '/index/11', img: '' },
+    {id: 4, name: '武林馆', path: '/index/11', img: '' },
+    {id: 5, name: '武林馆', path: '/index/11', img: '' },
+]
 
 export default {
     components: {
-        'c-nav': cNav
+        'c-nav': cNav,
+        'c-header': cHeader,
+        'c-footer': cFooter,
+        'c-column': cColumn,
+        'c-depInfo': cDepInfo,
+        swiper,
+        swiperSlide
     },
     data() {
         return {
@@ -82,8 +109,18 @@ export default {
             firstNav,
             secondNav,
             swiperList,
+            depInfoList,
             value2: 0,
-            img
+            img,
+            swiperOption: {
+                autoplay: 3000,
+                speed: 1000,
+            }
+        }
+    },
+    methods: {
+        search() {
+            console.log('回车了', this.searchValue)
         }
     }
 }
@@ -96,37 +133,6 @@ export default {
     .header {
         height: 108px;
         background-color: pink;
-        .logo {
-            img {
-                height: 70px;
-                margin-top: 23px;
-            }
-        }
-        .h-right {
-            margin-top: 34px;
-            text-align: right;
-            .login {
-                span {
-                    margin: 0 7px;
-                }
-                a {
-                    color: @f-color;
-                }
-            }
-            .search {
-                margin-top: 6px;
-                /deep/ input {
-                    width: 240px;
-                    height: 26px;
-                    border-color: @color;
-                    font-size: 13px;
-                }
-                /deep/ i {
-                    line-height: 26px;
-                    cursor: pointer;
-                }
-            }
-        }
     }
     .first-nav {
         height: 60px;
@@ -134,7 +140,7 @@ export default {
         
     }
     .swiper {
-        background-color: skyblue;
+        // background-color: tomato;
         .demo-carousel {
             height: 470px;
             background-position: center;
@@ -167,11 +173,10 @@ export default {
     }
     .main {
         min-height: 300px;
-        background-color: tomato;
-    }
-    .foot {
-        height: 468px;
-        background-color: #585657;
+        background-color: skyblue;
+        .doc-swiper {
+            position: relative;
+        }
     }
 }
 

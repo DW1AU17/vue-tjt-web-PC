@@ -7,7 +7,6 @@ import '@/assets/styles/base.less'
 
 Vue.use(ViewUI)  // 整个引入
 
-
 Vue.config.productionTip = false
 
 new Vue({
