@@ -9,7 +9,7 @@
         </nav>
         <div class="swiper">
              <Carousel v-model="value2" autoplay loop style="height: 100%;">
-                <CarouselItem v-for="item in swiperList" :key="item.id">
+                <CarouselItem v-for="item in swiperList" :key="item">
                     <div class="demo-carousel" :style="{backgroundImage: `url(${img})`}"></div>
                 </CarouselItem>
             </Carousel>
@@ -22,27 +22,19 @@
             <c-column>
                 <template #title>分馆介绍</template>
                 <template #content>
-                    <c-depInfo :list="depInfoList" />
+                    <c-pavCard :list="pavList" />
                 </template>
             </c-column>
-             <c-column>
+            <c-column>
                 <template #title>专家介绍</template>
                 <template #content>
-                    <div class="doc-swiper">   
-                        <swiper :options="swiperOption">
-                            <swiper-slide><img src="../../assets/images/code.jpg"></swiper-slide>
-                            <swiper-slide><img src="../../assets/images/code.jpg"></swiper-slide>
-                            <swiper-slide><img src="../../assets/images/code.jpg"></swiper-slide>
-                            <swiper-slide><img src="../../assets/images/code.jpg"></swiper-slide>
-                            <swiper-slide><img src="../../assets/images/code.jpg"></swiper-slide>
-                            <swiper-slide><img src="../../assets/images/code.jpg"></swiper-slide>
-                        </swiper>
-                            <!--以下看需要添加-->
-                        <div class="swiper-scrollbar"></div> 
-                        <div class="swiper-button-next"></div> 
-                        <div class="swiper-button-prev"></div> 
-                        <div class="swiper-pagination"></div> 
-                    </div>
+                    <c-docCard :list="docList" />
+                </template>
+            </c-column>
+            <c-column>
+                <template #title>科室介绍</template>
+                <template #content>
+                    <c-depCard :list="depList" />
                 </template>
             </c-column>
         </div>
@@ -56,11 +48,10 @@ import cNav from './components/c-nav'
 import cHeader from './components/c-header'
 import cFooter from './components/c-footer'
 import cColumn from './components/c-column'
-import cDepInfo from './components/c-depInfo'
+import cPavCard from './components/c-pavCard'
+import cDocCard from './components/c-docCard'
+import cDepCard from './components/c-depCard'
 import img from '@/assets/images/pic1.jpg'
-
-import { swiper, swiperSlide } from 'vue-awesome-swiper'
-import 'swiper/dist/css/swiper.css'
 
 let firstNav = [
     { path: '/index/index', name: '首页' },
@@ -80,18 +71,10 @@ let secondNav = [
     { path: '/index/mall', name: '桐君商城' },
     { path: '/index/order', name: '预约挂号' },
 ]
-let swiperList = [
-    {id: 1},
-    {id: 2},
-    {id: 3}
-]
-let depInfoList = [
-    {id: 1, name: '武林馆', path: '/index/11', img: '' },
-    {id: 2, name: '武林馆', path: '/index/11', img: '' },
-    {id: 3, name: '武林馆', path: '/index/11', img: '' },
-    {id: 4, name: '武林馆', path: '/index/11', img: '' },
-    {id: 5, name: '武林馆', path: '/index/11', img: '' },
-]
+let swiperList = [1, 2, 3]
+let pavList = [1, 2, 3, 4, 5]
+let docList = [1, 2, 3, 4, 5, 6]
+let depList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
 
 export default {
     components: {
@@ -99,9 +82,9 @@ export default {
         'c-header': cHeader,
         'c-footer': cFooter,
         'c-column': cColumn,
-        'c-depInfo': cDepInfo,
-        swiper,
-        swiperSlide
+        'c-pavCard': cPavCard,
+        'c-docCard': cDocCard,
+        'c-depCard': cDepCard
     },
     data() {
         return {
@@ -109,13 +92,11 @@ export default {
             firstNav,
             secondNav,
             swiperList,
-            depInfoList,
+            pavList,
+            docList,
+            depList,
             value2: 0,
-            img,
-            swiperOption: {
-                autoplay: 3000,
-                speed: 1000,
-            }
+            img
         }
     },
     methods: {
@@ -174,9 +155,6 @@ export default {
     .main {
         min-height: 300px;
         background-color: skyblue;
-        .doc-swiper {
-            position: relative;
-        }
     }
 }
 
