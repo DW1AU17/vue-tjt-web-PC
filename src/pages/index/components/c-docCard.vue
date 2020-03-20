@@ -59,7 +59,7 @@ export default {
         .doc-info {
             display: inline-block;
             width: 185px;
-            height: 271px;
+            height: 272px;
             background: url('../../../assets/images/lb-k.png');
             text-align: center;
             padding: 18px;

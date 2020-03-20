@@ -52,6 +52,7 @@ export default {
         padding: 46px 70px 46px 80px;
         margin-left: -38px;
         position: relative;
+        margin-bottom: 100px;
         .dep-item {
             display: inline-block;
             width: 70px;

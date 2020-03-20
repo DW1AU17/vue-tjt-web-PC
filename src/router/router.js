@@ -5,13 +5,23 @@ Vue.use(VueRouter)
 const router = new VueRouter({
     mode: 'history',
     routes: [
+        // {
+        //     path: '/',
+        //     redirect: '/index'
+        // },
         {
             path: '/',
-            redirect: '/index'
-        },
-        {
-            path: '/index/:id?',
-            component: () => import('@/pages/index')
+            component: () => import('@/pages/index'),
+            children: [
+                {
+                    path: '/',
+                    component: () => import('@/pages/index/indexBottom')
+                },
+                {
+                    path: '/login',
+                    component: () => import('@/pages/login')
+                }
+            ]
         }
     ]
 })

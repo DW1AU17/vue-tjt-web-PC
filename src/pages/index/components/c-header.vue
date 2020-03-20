@@ -5,9 +5,9 @@
         </i-col>
         <i-col span="6" class="h-right">
             <div class="login">
-                <a href="#">微信服务号</a><span>|</span>
-                <a href="#">登录</a><span>|</span>
-                <a href="#">注册</a>
+                <router-link to="#">微信服务号</router-link><span>|</span>
+                <router-link to="/login">登录</router-link><span>|</span>
+                <router-link to="#">注册</router-link>
             </div>
             <div class="search">
                 <Input :value="searchValue" @input="e => $emit('update:searchValue', e)" icon="md-search" placeholder="请输入..." />
