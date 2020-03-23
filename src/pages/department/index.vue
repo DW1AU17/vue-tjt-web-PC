@@ -44,7 +44,7 @@ let data = [
   },
   {
     name: "Joe Black",
-    age: 30,
+    age: 24,
     address: "Sydney No. 1 Lake Park",
     date: "2016-10-02"
   },
@@ -82,27 +82,41 @@ export default {
     return {
       secondNav,
       data,
-      columns
+      columns,
+      currentIndex: 0,
+      currentVal: '',
+      rowArr: [1]
     };
   },
+  created() {
+    this.getRowArr()
+  },
   methods: {
+    getRowArr() {
+      this.data.forEach((item, index) => {
+        if (index === 0){
+          this.currentVal = item.age
+        } else {
+          if (item.age === this.currentVal) {
+            this.rowArr[this.currentIndex]++
+            this.rowArr.push(0)
+          } else {
+            this.currentIndex = index
+            this.currentVal = item.age
+            this.rowArr.push(1)
+          }
+        }
+      })
+    },
     handleSpan({ row, column, rowIndex, columnIndex }) {
       console.log(row, column, rowIndex, columnIndex )
-      if (rowIndex === 0 && columnIndex === 0) {
-        return [1, 2];
-      } else if (rowIndex === 0 && columnIndex === 1) {
-        return [0, 0];
-      }
-      if (rowIndex === 2 && columnIndex === 0) {
+      if (rowIndex === 0 && columnIndex === 0){
+        return [1, 1]
+      } else if (rowIndex !== 0 && columnIndex === 0) {
         return {
-          rowspan: 2,
-          colspan: 1
-        };
-      } else if (rowIndex === 3 && columnIndex === 0) {
-        return {
-          rowspan: 0,
-          colspan: 0
-        };
+          rowspan: this.rowArr[rowIndex],
+          colspan: this.rowArr[rowIndex] ? 1 : 0
+        }
       }
     }
   }
