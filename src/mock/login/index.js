@@ -1,8 +1,9 @@
 const patientInfo = {
-    name: '发财',
+    name: '杜梓腾',
     mobile: '17800008888',
     idCard: '330622190001034567',
-    address: '杭州市西湖区湖景别墅1101栋'
+    address: '杭州市西湖区湖景别墅1101栋',
+    sex: '男'
 }
 
 const token = +new Date() + '' + Math.ceil(Math.random()*1000000000000) + 'DYT'

@@ -1,0 +1,56 @@
+html,
+body,
+#app {
+  height: 100%;
+}
+body {
+  background: url('../images/11.jpg');
+}
+/* 版心 */
+.container {
+  width: 1024px;
+  margin: 0 auto;
+}
+li {
+  list-style: none;
+}
+a {
+  color: #444;
+}
+a:hover {
+  color: #444;
+}
+.fs-12 {
+  font-size: 12px;
+}
+.fs-14 {
+  font-size: 14px;
+}
+.fs-16 {
+  font-size: 16px;
+}
+.fs-18 {
+  font-size: 18px;
+}
+.fc-666 {
+  color: #666;
+}
+.fc-333 {
+  color: #333;
+}
+.fs-fff {
+  color: #fff;
+}
+.fs-base {
+  color: #821c21;
+}
+#app .link-active {
+  color: #821c21;
+}
+.letter-title {
+  color: #821c21;
+  border-left: 3px solid #821c21;
+  padding-left: 10px;
+  font-size: 20px;
+  line-height: 20px;
+}

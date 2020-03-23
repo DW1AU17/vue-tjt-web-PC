@@ -4,10 +4,15 @@
             <img src="@/assets/images/logo.png" alt="桐君堂">
         </i-col>
         <i-col span="6" class="h-right">
-            <div class="login">
+            <div class="login" v-if="!token">
                 <router-link to="#">微信服务号</router-link><span>|</span>
                 <router-link to="/login">登录</router-link><span>|</span>
                 <router-link to="#">注册</router-link>
+            </div>
+            <div class="login" v-else>
+                <router-link to="#">你好, {{ patientInfo.name }}</router-link><span>|</span>
+                <router-link to="/mine" exact>个人中心</router-link><span>|</span>
+                <router-link to="/mine/record">预约记录</router-link>
             </div>
             <div class="search">
                 <Input :value="searchValue" @input="e => $emit('update:searchValue', e)" icon="md-search" placeholder="请输入..." />
@@ -17,10 +22,15 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
     name: 'c-header',
     props: {
         searchValue: [String, Number]
+    },
+    computed: {
+        ...mapState(['token', 'patientInfo'])
     }
 }
 </script>

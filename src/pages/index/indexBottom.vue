@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="swiper">
-             <Carousel v-model="value2" autoplay loop style="height: 100%;">
+             <Carousel v-model="value2" loop style="height: 100%;">
                 <CarouselItem v-for="item in swiperList" :key="item">
                     <div class="demo-carousel">
                         <img :src="img" alt="">
@@ -33,14 +33,11 @@
                 </template>
             </c-column>
         </div>
-        <!-- 底部 -->
-        <c-footer />
     </div>
 </template>
 
 <script>
-import cNav from './components/c-nav'
-import cFooter from './components/c-footer'
+import cNav from '@/components/c-nav'
 import cColumn from './components/c-column'
 import cPavCard from './components/c-pavCard'
 import cDocCard from './components/c-docCard'
@@ -62,7 +59,6 @@ let depList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
 export default {
     components: {
         'c-nav': cNav,
-        'c-footer': cFooter,
         'c-column': cColumn,
         'c-pavCard': cPavCard,
         'c-docCard': cDocCard,
@@ -88,7 +84,7 @@ export default {
 @f-color: #444;
     .swiper {
         .demo-carousel {
-            height: 470px;
+            min-height: 470px;
             position: relative;
             overflow: hidden;
             img {
@@ -96,6 +92,9 @@ export default {
                 position: absolute;
                 left: 50%;
                 transform: translateX(-50%);
+                width: 100%;
+                min-width: 1920px;
+                height: auto;
             }
         }
         /deep/ .ivu-carousel-dots-inside {

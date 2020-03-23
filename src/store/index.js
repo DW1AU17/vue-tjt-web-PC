@@ -1,13 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { getToken, setToken } from '../utils'
+import { getToken, setToken, getUserInfo, setUserInfo } from '../utils'
 import { login } from '@/api/user'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        patientInfo: {},
+        patientInfo: getUserInfo(),
         token: getToken()
     },
     mutations: {
@@ -27,6 +27,7 @@ export default new Vuex.Store({
                     commit('SET_TOKEN', token)  // token存到vuex中
                     commit('SET_PAT_INFO', data)
                     setToken(token)
+                    setUserInfo(data)
                     resolve('操作成功')
                 } else {
                     reject()

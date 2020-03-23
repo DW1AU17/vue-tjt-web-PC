@@ -20,10 +20,29 @@ const router = new VueRouter({
                 {
                     path: '/login',
                     component: () => import('@/pages/login')
-                }
+                },
+                {
+                    path: '/mine',
+                    component: () => import('@/pages/personalCenter'),
+                    children: [
+                        {
+                            path: '/mine',
+                            component: () => import('@/pages/personalCenter/profile')
+                        },
+                        {
+                            path: '/mine/record',
+                            component: () => import('@/pages/personalCenter/record')
+                        }
+                    ]
+                },
+                {
+                    path: '/dep',
+                    component: () => import('@/pages/department')
+                },
             ]
         }
-    ]
+    ],
+    linkActiveClass: 'link-active'   // 高亮类名重新起名
 })
 
 export default router
