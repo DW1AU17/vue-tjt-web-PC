@@ -11,7 +11,7 @@
                         <p class="fs-16 fc-333 dep-name">朱平</p>
                         <p class="fs-14 fc-666 the-title">国家级名中医</p>
                         <span class="line"></span>
-                        <p class="fs-12 fc-666 introduce">
+                        <p class="fs-12 fc-666 introduce ellipsis-3">
                             全国名老中医学经验继承知道老师，消化道、心血管疾病及内科杂症,全国名老中医学经验继承知道老师，消化道、心血管疾病及内科杂症
                         </p>
                     </router-link> 
@@ -85,11 +85,6 @@ export default {
                 width: 148px;
                 line-height: 16px;
                 text-align: left;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                display: -webkit-box;
-                -webkit-line-clamp: 3;
-                -webkit-box-orient: vertical;
             }
             &:hover:after {
                 content: '';

@@ -36,7 +36,7 @@ const router = new VueRouter({
                     ]
                 },
                 {
-                    path: '/dep',
+                    path: '/dep/:id?',
                     component: () => import('@/pages/department')
                 },
             ]

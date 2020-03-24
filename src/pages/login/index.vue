@@ -55,6 +55,7 @@ export default {
                     // 调用vuex中的登录方法
                     let res = await this.userLogin(this.formCustom)
                     this.$Message.success(res)
+                    this.$router.push('/mine')
                 } 
             })
         }
